@@ -1,6 +1,18 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { App } from './app/app';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeTh from '@angular/common/locales/th';
+
+// ✅ ลงทะเบียน locale ภาษาไทย
+registerLocaleData(localeTh);
+
+bootstrapApplication(App, {
+  providers: [
+    provideRouter(routes),
+    { provide: LOCALE_ID, useValue: 'th' } // ✅ ตั้งค่าให้ใช้ภาษาไทย
+  ]
+});

@@ -1,0 +1,118 @@
+/* ✅ ฟอร์มหลัก */
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ✅ กล่องข้อมูลแต่ละกลุ่ม */
+fieldset {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+/* ✅ หัวข้อกลุ่ม */
+legend {
+  font-weight: 600;
+  font-size: 18px;
+  color: #1976d2;
+  padding: 0 12px;
+  margin-bottom: 16px;
+}
+
+/* ✅ ช่องกรอกข้อมูล */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* ✅ ปุ่มบันทึก */
+.form-actions {
+  text-align: right;
+  margin-top: 16px;
+}
+
+/* ✅ Grid layout สำหรับฟิลด์ */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ✅ ช่องแนบไฟล์ */
+.file-upload {
+  margin-top: 8px;
+}
+
+.file-upload label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.file-upload input[type="file"] {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.file-list ul {
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.file-list li {
+  list-style-type: disc;
+  font-size: 14px;
+  color: #555;
+}
+
+.small-field {
+  max-width: 900px;
+
+  flex: 0 0 auto;
+}
+.wide-field {
+  grid-column: span 2;
+}
+.time-pair {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.time-pair mat-form-field {
+  flex: 1 1 200px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1;
+}
+

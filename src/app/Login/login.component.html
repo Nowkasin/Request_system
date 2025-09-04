@@ -1,0 +1,32 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2 class="login-title">Login</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" autocomplete="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" autocomplete="current-password">
+    </mat-form-field>
+
+    <div class="academy-link">
+      connect to Chulabhorn Royal Academy <a href="#">click here</a>
+    </div>
+
+    <button  type="submit" class="login-button" [disabled]="loading">
+      <ng-container *ngIf="!loading">Login</ng-container>
+      <ng-container *ngIf="loading">
+        <mat-progress-spinner
+          diameter="20"
+          mode="indeterminate"
+          color="accent"
+          class="spinner"
+        ></mat-progress-spinner>
+        Logging in…
+      </ng-container>
+    </button>
+  </form>
+</div>

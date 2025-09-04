@@ -1,0 +1,86 @@
+<h2>📋 รายการคำขอทั้งหมด</h2>
+
+<table mat-table [dataSource]="requestList" class="mat-elevation-z8 full-width-table">
+
+    <!-- รหัสงาน -->
+    <ng-container matColumnDef="taskCode">
+        <th mat-header-cell *matHeaderCellDef> รหัสงาน </th>
+        <td mat-cell *matCellDef="let request"> {{ request.taskCode }} </td>
+    </ng-container>
+
+    <!-- สถานะ -->
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> สถานะ </th>
+        <td mat-cell *matCellDef="let request">
+            <span class="status-tag" [ngClass]="getStatusClass(request.status)">
+                {{ request.status }}
+            </span>
+        </td>
+    </ng-container>
+
+    <!-- ชื่อโครงการ -->
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> ชื่อโครงการ </th>
+        <td mat-cell *matCellDef="let request"> {{ request.title }} </td>
+    </ng-container>
+
+    <!-- ความสำคัญ -->
+    <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef> ความสำคัญ </th>
+        <td mat-cell *matCellDef="let request"> {{ request.priority }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> ประเภทงาน </th>
+        <td mat-cell *matCellDef="let request"> {{ request.type }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> วันที่สร้าง </th>
+        <td mat-cell *matCellDef="let request">
+            {{ request.createdAt | date: 'dd/MM/yyyy' }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sendDate">
+        <th mat-header-cell *matHeaderCellDef> วันที่ต้องการ </th>
+        <td mat-cell *matCellDef="let request">
+            {{ request.sendDate | date: 'dd/MM/yyyy' }}
+        </td>
+    </ng-container>
+
+     <ng-container matColumnDef="estimate">
+        <th mat-header-cell *matHeaderCellDef> วันที่ประมาณการ </th>
+        <td mat-cell *matCellDef="let request">
+            <!-- {{ request.sendDate | date: 'dd/MM/yyyy' }}  -->
+        </td>
+    </ng-container>
+
+    <!-- อ้างอิงจากปุ่มส่งงาน -->
+    <ng-container matColumnDef="SDR">
+        <th mat-header-cell *matHeaderCellDef> วันที่ส่งจริง </th>
+        <td mat-cell *matCellDef="let request">
+            <!-- {{ request.sendDate | date: 'dd/MM/yyyy' }}  -->
+        </td>
+    </ng-container>
+
+    <!-- ปุ่มดูรายละเอียด -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> การดำเนินการ </th>
+        <td mat-cell *matCellDef="let request">
+            <div class="action-cell">
+                <button mat-stroked-button color="primary" class="details-button" (click)="viewDetails(request)">
+                    <mat-icon class="details-icon">visibility</mat-icon>
+                    <span>ดูรายละเอียด</span>
+                </button>
+            </div>
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row
+        *matHeaderRowDef="['taskCode', 'status', 'actions', 'createdAt','sendDate','estimate','SDR', 'title', 'priority', 'type']"></tr>
+    <tr mat-row
+        *matRowDef="let row; columns: ['taskCode', 'status', 'actions', 'createdAt','sendDate','estimate','SDR', 'title', 'priority', 'type']">
+    </tr>
+</table>
