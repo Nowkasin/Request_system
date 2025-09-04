@@ -6,6 +6,7 @@ import { RequestComponent } from './Request/request.component';
 // import { UserManagementComponent } from '../Users/user-management.component';
 import { StatusComponent } from './Status/status.component';
 import { NotFoundComponent } from './notfound.component';
+import { TestDBComponent } from './TestDB/TestDB.component';
 
 
 
@@ -18,7 +19,8 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent }, // ✅ ใช้ path 'home'
       { path: 'request', component: RequestComponent },
-      { path: 'status', component: StatusComponent }
+      { path: 'status', component: StatusComponent },
+      { path: 'test-db',component: TestDBComponent },
     ]
   },
 { path: '**', component: NotFoundComponent } 
