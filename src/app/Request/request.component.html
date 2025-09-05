@@ -34,11 +34,9 @@
 
       <mat-form-field appearance="outline" class="wide-field">
         <mat-label>ชื่อโครงการ/งาน/ความต้องการ</mat-label>
-        <input matInput type="text" name="title" [(ngModel)]="title" />
+        <input matInput type="text" name="title" [(ngModel)]="title" required #titleCtrl="ngModel" />
+        <mat-error *ngIf="form.submitted && titleCtrl.invalid">กรุณากรอกชื่อโครงการ</mat-error>
       </mat-form-field>
-
-
-
     </div>
   </fieldset>
 
@@ -52,8 +50,10 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>เบอร์มือถือ</mat-label>
-        <input matInput type="tel" name="reporterPhone" [(ngModel)]="reporterPhone" />
+        <mat-label>เบอร์มือถือผู้แจ้ง</mat-label>
+        <input matInput type="tel" name="reporterPhone" [(ngModel)]="reporterPhone" appPhoneMask maxlength="12" required
+          #reporterPhoneCtrl="ngModel" />
+        <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
       </mat-form-field>
     </div>
   </fieldset>
@@ -65,19 +65,20 @@
       <!-- หน่วยงาน -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>หน่วยงาน</mat-label>
-        <input matInput type="text" name="coordinatorEmail" [(ngModel)]="coordinatorEmail" />
+        <input matInput type="text" name="coordinatoragency" [(ngModel)]="coordinatoragency" />
       </mat-form-field>
-
       <!-- แถวล่าง: ชื่อพนักงาน + เบอร์มือถือ -->
       <div class="row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>ชื่อพนักงาน</mat-label>
-          <input matInput type="text" name="coordinatorPhone" [(ngModel)]="coordinatorPhone" />
+          <input matInput type="text" name="coordinatorEmail," [(ngModel)]="coordinatorEmail" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>เบอร์มือถือ</mat-label>
-          <input matInput type="tel" name="coordinatorMobile" [(ngModel)]="coordinatorMobile" />
+          <input matInput type="tel" name="coordinatorMobile" [(ngModel)]="coordinatorMobile" appPhoneMask
+            maxlength="12" required #reporterPhoneCtrl="ngModel" />
+          <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -89,18 +90,20 @@
     <div class="form-section">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>หน่วยงาน</mat-label>
-        <input matInput type="text" name="assigneeEmail" [(ngModel)]="assigneeEmail" />
+        <input matInput type="text" name="assigneeagency" [(ngModel)]="assigneeagency" />
       </mat-form-field>
 
       <div class="row">
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>ชื่อพนักงาน</mat-label>
-          <input matInput type="text" name="assigneePhone" [(ngModel)]="assigneePhone" />
+          <input matInput type="text" name="assigneeEmail" [(ngModel)]="assigneeEmail" />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="half-width">
           <mat-label>เบอร์มือถือ</mat-label>
-          <input matInput type="tel" name="assigneeMobile" [(ngModel)]="assigneeMobile" />
+          <input matInput type="tel" name="assigneeMobile" [(ngModel)]="assigneeMobile" appPhoneMask maxlength="12"
+            required #reporterPhoneCtrl="ngModel" />
+          <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -113,27 +116,33 @@
     <div class="form-grid">
       <mat-form-field appearance="outline">
         <mat-label>วันที่ต้องการ</mat-label>
-        <input matInput [matDatepicker]="picker" name="sendDate" [(ngModel)]="sendDate" />
+        <input matInput [matDatepicker]="picker" name="sendDate" [(ngModel)]="sendDate" required
+          #sendDateCtrl="ngModel" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.submitted && sendDateCtrl.invalid">กรุณาเลือกวันที่</mat-error>
       </mat-form-field>
 
       <!-- ให้เลือกเป็นนาฬิกา หรือ อะไรก็ได้ -->
+      <!-- 🔶 เวลาเริ่ม -->
       <mat-form-field appearance="outline" class="half-width">
         <mat-label>เวลาเริ่ม</mat-label>
-        <mat-select [(ngModel)]="startTime" name="startTime" (selectionChange)="onStartTimeChange()">
+        <mat-select [(ngModel)]="startTime" name="startTime" required #startTimeCtrl="ngModel"
+          (selectionChange)="onStartTimeChange()">
           <mat-option *ngFor="let time of timeOptions" [value]="time">{{ time }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.submitted && startTimeCtrl.invalid">กรุณาเลือกเวลาเริ่ม</mat-error>
       </mat-form-field>
 
+      <!-- 🔶 เวลาสิ้นสุด -->
       <mat-form-field appearance="outline" class="half-width">
         <mat-label>เวลาสิ้นสุด</mat-label>
-        <mat-select [(ngModel)]="endTime" name="endTime" (selectionChange)="validateEndTime()">
+        <mat-select [(ngModel)]="endTime" name="endTime" required #endTimeCtrl="ngModel"
+          (selectionChange)="validateEndTime()">
           <mat-option *ngFor="let time of filteredEndTimes" [value]="time">{{ time }}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.submitted && endTimeCtrl.invalid">กรุณาเลือกเวลาสิ้นสุด</mat-error>
       </mat-form-field>
-
-
     </div>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -165,7 +174,6 @@
     </div>
   </fieldset>
 
-  <!-- 🔶 ปุ่มบันทึก -->
   <div class="form-actions">
     <button mat-raised-button color="primary" type="submit">
       <mat-icon>save</mat-icon> บันทึก

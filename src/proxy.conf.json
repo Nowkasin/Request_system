@@ -1,0 +1,14 @@
+{
+  "/ldap": {
+    "target": "http://172.19.107.54:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api_phonebook": {
+    "target": "http://172.19.107.54:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -16,7 +16,7 @@
       connect to Chulabhorn Royal Academy <a href="#">click here</a>
     </div>
 
-    <button  type="submit" class="login-button" [disabled]="loading">
+   <button type="submit" class="login-button" [disabled]="loading || loginForm.invalid">
       <ng-container *ngIf="!loading">Login</ng-container>
       <ng-container *ngIf="loading">
         <mat-progress-spinner

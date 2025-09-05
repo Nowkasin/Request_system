@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule, Router } from '@angular/router';
-
+import { PhoneMaskDirective } from '../directive/phone-mask.directive';
 @Component({
   selector: 'app-request',
   standalone: true,
@@ -27,6 +27,7 @@ import { RouterModule, Router } from '@angular/router';
     MatIconModule,
     HttpClientModule,
     RouterModule,
+    PhoneMaskDirective,
   ],
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css'],
@@ -41,22 +42,19 @@ export class RequestComponent implements OnInit {
   priority: string = '';
   reporterEmail: string = '';
   reporterPhone: string = '';
+  coordinatoragency: string = ''; 
   coordinatorEmail: string = '';
-  coordinatorPhone: string = '';
   coordinatorMobile: string = '';
+  assigneeagency: string = '';
   assigneeEmail: string = '';
-  assigneePhone: string = '';
   assigneeMobile: string = '';
   packageCode: string = '';
   sendDate: Date | null = null;
-
-  // 🔹 สำหรับ dropdown เวลา
   timeOptions: string[] = [];
   filteredEndTimes: string[] = [];
-  startTime: string = '';
-  endTime: string = '';
+  startTime: string = '08:00';
+  endTime: string = '16:00';
   isEndTimeValid: boolean = true;
-
   details: string = '';
   note: string = '';
 
@@ -67,11 +65,10 @@ export class RequestComponent implements OnInit {
     this.generateTimeOptions();
   }
 
-  // ✅ สร้างรายการเวลา
   generateTimeOptions(): void {
-    const startHour = 8;    // เริ่ม 08:00
-    const endHour = 18;     // จบ 18:00
-    const stepMinutes = 30; // ทุก 30 นาที
+    const startHour = 8;
+    const endHour = 18;
+    const stepMinutes = 30;
 
     for (let hour = startHour; hour <= endHour; hour++) {
       for (let min = 0; min < 60; min += stepMinutes) {
@@ -83,7 +80,6 @@ export class RequestComponent implements OnInit {
     this.filteredEndTimes = [...this.timeOptions];
   }
 
-  // ✅ เมื่อเลือกเวลาเริ่ม ให้กรองเวลาสิ้นสุด
   onStartTimeChange(): void {
     this.filteredEndTimes = this.timeOptions.filter(t => t > this.startTime);
     if (this.endTime && this.endTime <= this.startTime) {
@@ -92,7 +88,6 @@ export class RequestComponent implements OnInit {
     this.validateEndTime();
   }
 
-  // ✅ ตรวจสอบเวลาสิ้นสุด
   validateEndTime(): void {
     this.isEndTimeValid = !this.endTime || this.endTime > this.startTime;
   }
@@ -142,7 +137,6 @@ export class RequestComponent implements OnInit {
       console.log('📎 ไฟล์ที่เลือก:', this.selectedFiles.map((f) => f.name));
     }
   }
-
   onSubmit(form: NgForm): void {
     if (!form.valid) {
       console.warn('⚠️ ฟอร์มไม่สมบูรณ์');
@@ -153,7 +147,6 @@ export class RequestComponent implements OnInit {
       console.warn('⚠️ เวลาสิ้นสุดต้องมากกว่าเวลาเริ่ม');
       return;
     }
-
     const requestData = {
       taskCode: this.taskCode,
       selectedCategory: this.selectedCategory,
@@ -162,11 +155,11 @@ export class RequestComponent implements OnInit {
       priority: this.priority,
       reporterEmail: this.reporterEmail,
       reporterPhone: this.reporterPhone,
+      coordinatoragency: this.coordinatoragency,
       coordinatorEmail: this.coordinatorEmail,
-      coordinatorPhone: this.coordinatorPhone,
       coordinatorMobile: this.coordinatorMobile,
+      assigneeagency: this.assigneeagency,
       assigneeEmail: this.assigneeEmail,
-      assigneePhone: this.assigneePhone,
       assigneeMobile: this.assigneeMobile,
       packageCode: this.packageCode,
       sendDate: this.sendDate,
@@ -190,5 +183,3 @@ export class RequestComponent implements OnInit {
     this.router.navigate(['/status']);
   }
 }
-
-
