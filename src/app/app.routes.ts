@@ -7,6 +7,8 @@ import { RequestComponent } from './Request/request.component';
 import { StatusComponent } from './Status/status.component';
 import { NotFoundComponent } from './notfound.component';
 import { TestDBComponent } from './TestDB/TestDB.component';
+import { ProfileComponent } from './Profile/profile.component';
+
 
 
 
@@ -21,6 +23,7 @@ export const routes: Routes = [
       { path: 'request', component: RequestComponent },
       { path: 'status', component: StatusComponent },
       { path: 'test-db',component: TestDBComponent },
+      { path: 'profile',component: ProfileComponent}
     ]
   },
 { path: '**', component: NotFoundComponent } 
