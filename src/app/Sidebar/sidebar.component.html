@@ -1,32 +1,48 @@
-<mat-sidenav mode="side" [opened]="true" class="sidebar" [class.collapsed]="isCollapsed" (mouseenter)="onMouseEnter()"
-    (mouseleave)="onMouseLeave()">
-    <mat-toolbar class="sidebar-header no-padding">
-        <a routerLink="/home">
-            <img src="/asset/pic/Pic2.png" alt="Chulabhorn Banner" class="banner-image" />
-        </a>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    mode="side"
+    [opened]="true"
+    [ngClass]="{ 'collapsed': isCollapsed }"
+    class="sidebar"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
+  >
+    <mat-toolbar [ngClass]="{ 'toolbar-expanded': !isCollapsed, 'toolbar-collapsed': isCollapsed }" class="sidebar-header">
+      <a routerLink="/home">
+        <img src="/asset/pic/Pic2.png" alt="Chulabhorn Banner" class="banner-image" />
+      </a>
     </mat-toolbar>
 
-    <div class="custom-menu">
-        <a routerLink="/request" routerLinkActive="active" class="menu-item">
-            <mat-icon>assignment</mat-icon>
-            <span class="menu-text" *ngIf="!isCollapsed">แจ้งความต้องการ</span>
-        </a>
-        <a routerLink="/status" routerLinkActive="active" class="menu-item">
-            <mat-icon>list_alt</mat-icon>
-            <span class="menu-text" *ngIf="!isCollapsed">แสดงงาน</span>
-        </a>
-        <a routerLink="/record" routerLinkActive="active" class="menu-item">
-            <mat-icon>check_circle</mat-icon>
-            <span class="menu-text" *ngIf="!isCollapsed">บันทึก</span>
-        </a>
-        <a routerLink="/users" routerLinkActive="active" class="menu-item">
-            <mat-icon>group</mat-icon>
-            <span class="menu-text" *ngIf="!isCollapsed">จัดการผู้ใช้</span>
-        </a>
-        <a routerLink="/test-db" routerLinkActive="active" class="menu-item">
-            <mat-icon>share</mat-icon>
-            <span class="menu-text" *ngIf="!isCollapsed">ทดสอบดึงข้อมูลจาก DB</span>
-        </a>
 
+    <div class="custom-menu">
+      <a routerLink="/request" routerLinkActive="active" class="menu-item">
+        <mat-icon>assignment</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">แจ้งความต้องการ</span>
+      </a>
+      <a routerLink="/status" routerLinkActive="active" class="menu-item">
+        <mat-icon>list_alt</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">แสดงงาน</span>
+      </a>
+      <a routerLink="/record" routerLinkActive="active" class="menu-item">
+        <mat-icon>check_circle</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">บันทึก</span>
+      </a>
+      <a routerLink="/users" routerLinkActive="active" class="menu-item">
+        <mat-icon>group</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">จัดการผู้ใช้</span>
+      </a>
+      <a routerLink="/test-db" routerLinkActive="active" class="menu-item">
+        <mat-icon>share</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">ทดสอบดึงข้อมูลจาก DB</span>
+      </a>
+      <a routerLink="/profile" routerLinkActive="active" class="menu-item">
+        <mat-icon>person</mat-icon>
+        <span class="menu-text" *ngIf="!isCollapsed">โปรไฟล์</span>
+      </a>
     </div>
-</mat-sidenav>
+  </mat-sidenav>
+
+  <mat-sidenav-content [ngClass]="{ 'collapsed-content': isCollapsed }" class="main-content">
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

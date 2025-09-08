@@ -15,5 +15,11 @@ app-sidebar {
 }
 
 .content.shifted {
-  margin-left: 40px;
+  margin-left: 20px;
+}
+.scroll-wrapper {
+  height: 100vh; /* หรือ calc(100vh - headerHeight) ถ้ามี header */
+  overflow-y: auto;
+  padding: 24px;
+  box-sizing: border-box;
 }

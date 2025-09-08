@@ -1,42 +1,37 @@
-.home-container {
-  display: flex;
-  height: 100vh;
-  background-color: #f0f2f5;
- overflow: hidden; 
+.dashboard-header {
+  margin-bottom: 24px;
+  text-align: center;
 }
 
-app-sidebar {
-  flex-shrink: 0;
+.dashboard-header h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
-/* ✅ Content Area */
-.content {
-  flex: 1;
-  padding: 32px;
-  transition: margin-left 0.4s ease-in-out;
-  margin-left: 32px; /* เมื่อ sidebar ยุบ */
-   overflow-y: auto;
+.dashboard-header p {
+  font-size: 16px;
+  color: #555;
 }
 
-.content.shifted {
-  margin-left: 32px; /* เมื่อ sidebar ขยาย */
-}
-
+/* Widget layout */
 .dashboard-widgets {
   display: flex;
-  gap: 24px;
   flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
 }
 
 .widget {
-  flex: 1 1 30%;
-  background-color: #ffffff;
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
+  background-color: #fff;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   transition: transform 0.3s ease;
 }
 
@@ -45,11 +40,68 @@ app-sidebar {
 }
 
 .widget-icon {
-  font-size: 36px;
+  font-size: 32px;
   color: #1976d2;
 }
 
 .widget-text {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
+}
+
+/* Power BI Report */
+.dashboard-report {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.dashboard-report h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.report-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.report-wrapper iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dashboard-header h2 {
+    font-size: 20px;
+  }
+
+  .dashboard-header p {
+    font-size: 14px;
+  }
+
+  .dashboard-widgets {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .widget {
+    flex: 1 1 100%;
+    padding: 16px;
+  }
+
+  .widget-icon {
+    font-size: 28px;
+  }
+
+  .widget-text {
+    font-size: 14px;
+  }
+
+  .report-wrapper iframe {
+    height: 300px;
+  }
 }

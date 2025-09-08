@@ -1,182 +1,183 @@
-<h2>📋 แจ้งความต้องการใหม่</h2>
-<p>กรอกข้อมูลด้านล่างเพื่อส่งคำขอ</p>
-
-<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="request-form">
-  <!-- 🔶 ข้อมูลทั่วไป -->
-  <fieldset>
-    <legend>ข้อมูลทั่วไป</legend>
-    <div class="form-grid">
-      <mat-form-field appearance="outline">
-        <mat-label>รหัสงาน</mat-label>
-        <input matInput type="text" [value]="taskCode" readonly />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>ความต้องการ</mat-label>
-        <mat-select [(ngModel)]="selectedCategory" name="selectedCategory">
-          <mat-option value="เร่งด่วน">ความต้องการเร่งด่วน</mat-option>
-          <mat-option value="สารสนเทศ">สารสนเทศ</mat-option>
-          <mat-option value="ซ่อม">แจ้งซ่อม</mat-option>
-          <mat-option value="อาคาร">อาคาร</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>ประเภท</mat-label>
-        <mat-select [(ngModel)]="type" name="type">
-          <mat-option value="Project">Project</mat-option>
-          <mat-option value="Dashboard">Dashboard</mat-option>
-          <mat-option value="Report">Report</mat-option>
-          <mat-option value="Data">Data</mat-option>
-          <mat-option value="Support">Support</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="wide-field">
-        <mat-label>ชื่อโครงการ/งาน/ความต้องการ</mat-label>
-        <input matInput type="text" name="title" [(ngModel)]="title" required #titleCtrl="ngModel" />
-        <mat-error *ngIf="form.submitted && titleCtrl.invalid">กรุณากรอกชื่อโครงการ</mat-error>
-      </mat-form-field>
-    </div>
-  </fieldset>
-
-  <!-- 🔶 ผู้แจ้ง -->
-  <fieldset>
-    <legend>ผู้แจ้ง</legend>
-    <div class="form-grid">
-      <mat-form-field appearance="outline">
-        <mat-label>ชื่อพนักงาน</mat-label>
-        <input matInput type="text" name="reporterEmail" [(ngModel)]="reporterEmail" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>เบอร์มือถือผู้แจ้ง</mat-label>
-        <input matInput type="tel" name="reporterPhone" [(ngModel)]="reporterPhone" appPhoneMask maxlength="12" required
-          #reporterPhoneCtrl="ngModel" />
-        <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
-      </mat-form-field>
-    </div>
-  </fieldset>
-
-  <!-- 🔶 ผู้ร้องขอ -->
-  <fieldset>
-    <legend>ผู้ร้องขอ</legend>
-    <div class="form-section">
-      <!-- หน่วยงาน -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>หน่วยงาน</mat-label>
-        <input matInput type="text" name="coordinatoragency" [(ngModel)]="coordinatoragency" />
-      </mat-form-field>
-      <!-- แถวล่าง: ชื่อพนักงาน + เบอร์มือถือ -->
-      <div class="row">
-        <mat-form-field appearance="outline" class="half-width">
-          <mat-label>ชื่อพนักงาน</mat-label>
-          <input matInput type="text" name="coordinatorEmail," [(ngModel)]="coordinatorEmail" />
+<div class="scroll-wrapper">
+  <h2>📋 แจ้งความต้องการใหม่</h2>
+  <p>กรอกข้อมูลด้านล่างเพื่อส่งคำขอ</p>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="request-form">
+    <!-- 🔶 ข้อมูลทั่วไป -->
+    <fieldset>
+      <legend>ข้อมูลทั่วไป</legend>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>รหัสงาน</mat-label>
+          <input matInput type="text" [value]="taskCode" readonly />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="half-width">
-          <mat-label>เบอร์มือถือ</mat-label>
-          <input matInput type="tel" name="coordinatorMobile" [(ngModel)]="coordinatorMobile" appPhoneMask
-            maxlength="12" required #reporterPhoneCtrl="ngModel" />
-          <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
+        <mat-form-field appearance="outline">
+          <mat-label>ความต้องการ</mat-label>
+          <mat-select [(ngModel)]="selectedCategory" name="selectedCategory">
+            <mat-option value="เร่งด่วน">ความต้องการเร่งด่วน</mat-option>
+            <mat-option value="สารสนเทศ">สารสนเทศ</mat-option>
+            <mat-option value="ซ่อม">แจ้งซ่อม</mat-option>
+            <mat-option value="อาคาร">อาคาร</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>ประเภท</mat-label>
+          <mat-select [(ngModel)]="type" name="type">
+            <mat-option value="Project">Project</mat-option>
+            <mat-option value="Dashboard">Dashboard</mat-option>
+            <mat-option value="Report">Report</mat-option>
+            <mat-option value="Data">Data</mat-option>
+            <mat-option value="Support">Support</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="wide-field">
+          <mat-label>ชื่อโครงการ/งาน/ความต้องการ</mat-label>
+          <input matInput type="text" name="title" [(ngModel)]="title" required #titleCtrl="ngModel" />
+          <mat-error *ngIf="form.submitted && titleCtrl.invalid">กรุณากรอกชื่อโครงการ</mat-error>
         </mat-form-field>
       </div>
-    </div>
-  </fieldset>
+    </fieldset>
 
-  <!-- 🔶 ผู้รับงาน -->
-  <fieldset>
-    <legend>ผู้รับงาน</legend>
-    <div class="form-section">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>หน่วยงาน</mat-label>
-        <input matInput type="text" name="assigneeagency" [(ngModel)]="assigneeagency" />
-      </mat-form-field>
-
-      <div class="row">
-        <mat-form-field appearance="outline" class="half-width">
+    <!-- 🔶 ผู้แจ้ง -->
+    <fieldset>
+      <legend>ผู้แจ้ง</legend>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
           <mat-label>ชื่อพนักงาน</mat-label>
-          <input matInput type="text" name="assigneeEmail" [(ngModel)]="assigneeEmail" />
+          <input matInput type="text" name="reporterEmail" [(ngModel)]="reporterEmail" />
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="half-width">
-          <mat-label>เบอร์มือถือ</mat-label>
-          <input matInput type="tel" name="assigneeMobile" [(ngModel)]="assigneeMobile" appPhoneMask maxlength="12"
+        <mat-form-field appearance="outline">
+          <mat-label>เบอร์มือถือผู้แจ้ง</mat-label>
+          <input matInput type="tel" name="reporterPhone" [(ngModel)]="reporterPhone" appPhoneMask maxlength="12"
             required #reporterPhoneCtrl="ngModel" />
           <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
         </mat-form-field>
       </div>
-    </div>
-  </fieldset>
+    </fieldset>
+
+    <!-- 🔶 ผู้ร้องขอ -->
+    <fieldset>
+      <legend>ผู้ร้องขอ</legend>
+      <div class="form-section">
+        <!-- หน่วยงาน -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>หน่วยงาน</mat-label>
+          <input matInput type="text" name="coordinatoragency" [(ngModel)]="coordinatoragency" />
+        </mat-form-field>
+        <!-- แถวล่าง: ชื่อพนักงาน + เบอร์มือถือ -->
+        <div class="row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>ชื่อพนักงาน</mat-label>
+            <input matInput type="text" name="coordinatorEmail," [(ngModel)]="coordinatorEmail" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>เบอร์มือถือ</mat-label>
+            <input matInput type="tel" name="coordinatorMobile" [(ngModel)]="coordinatorMobile" appPhoneMask
+              maxlength="12" required #reporterPhoneCtrl="ngModel" />
+            <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 🔶 ผู้รับงาน -->
+    <fieldset>
+      <legend>ผู้รับงาน</legend>
+      <div class="form-section">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>หน่วยงาน</mat-label>
+          <input matInput type="text" name="assigneeagency" [(ngModel)]="assigneeagency" />
+        </mat-form-field>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>ชื่อพนักงาน</mat-label>
+            <input matInput type="text" name="assigneeEmail" [(ngModel)]="assigneeEmail" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>เบอร์มือถือ</mat-label>
+            <input matInput type="tel" name="assigneeMobile" [(ngModel)]="assigneeMobile" appPhoneMask maxlength="12"
+              required #reporterPhoneCtrl="ngModel" />
+            <mat-error *ngIf="form.submitted && reporterPhoneCtrl.invalid">กรุณากรอกเบอร์มือถือ</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
 
 
-  <!-- 🔶 รายละเอียด -->
-  <fieldset>
-    <legend>รายละเอียด</legend>
-    <div class="form-grid">
-      <mat-form-field appearance="outline">
-        <mat-label>วันที่ต้องการ</mat-label>
-        <input matInput [matDatepicker]="picker" name="sendDate" [(ngModel)]="sendDate" required
-          #sendDateCtrl="ngModel" />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="form.submitted && sendDateCtrl.invalid">กรุณาเลือกวันที่</mat-error>
-      </mat-form-field>
+    <!-- 🔶 รายละเอียด -->
+    <fieldset>
+      <legend>รายละเอียด</legend>
+      <div class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>วันที่ต้องการ</mat-label>
+          <input matInput [matDatepicker]="picker" name="sendDate" [(ngModel)]="sendDate" required
+            #sendDateCtrl="ngModel" />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.submitted && sendDateCtrl.invalid">กรุณาเลือกวันที่</mat-error>
+        </mat-form-field>
 
-      <!-- ให้เลือกเป็นนาฬิกา หรือ อะไรก็ได้ -->
-      <!-- 🔶 เวลาเริ่ม -->
-      <mat-form-field appearance="outline" class="half-width">
-        <mat-label>เวลาเริ่ม</mat-label>
-        <mat-select [(ngModel)]="startTime" name="startTime" required #startTimeCtrl="ngModel"
-          (selectionChange)="onStartTimeChange()">
-          <mat-option *ngFor="let time of timeOptions" [value]="time">{{ time }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.submitted && startTimeCtrl.invalid">กรุณาเลือกเวลาเริ่ม</mat-error>
-      </mat-form-field>
+        <!-- ให้เลือกเป็นนาฬิกา หรือ อะไรก็ได้ -->
+        <!-- 🔶 เวลาเริ่ม -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>เวลาเริ่ม</mat-label>
+          <mat-select [(ngModel)]="startTime" name="startTime" required #startTimeCtrl="ngModel"
+            (selectionChange)="onStartTimeChange()">
+            <mat-option *ngFor="let time of timeOptions" [value]="time">{{ time }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.submitted && startTimeCtrl.invalid">กรุณาเลือกเวลาเริ่ม</mat-error>
+        </mat-form-field>
 
-      <!-- 🔶 เวลาสิ้นสุด -->
-      <mat-form-field appearance="outline" class="half-width">
-        <mat-label>เวลาสิ้นสุด</mat-label>
-        <mat-select [(ngModel)]="endTime" name="endTime" required #endTimeCtrl="ngModel"
-          (selectionChange)="validateEndTime()">
-          <mat-option *ngFor="let time of filteredEndTimes" [value]="time">{{ time }}</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.submitted && endTimeCtrl.invalid">กรุณาเลือกเวลาสิ้นสุด</mat-error>
-      </mat-form-field>
-    </div>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>รายละเอียด</mat-label>
-      <textarea matInput rows="4" name="details" [(ngModel)]="details"></textarea>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>หมายเหตุ</mat-label>
-      <textarea matInput rows="2" name="note" [(ngModel)]="note"></textarea>
-    </mat-form-field>
-  </fieldset>
-
-  <!-- 🔶 แนบไฟล์ -->
-  <fieldset>
-    <legend>📎 แนบไฟล์</legend>
-    <div class="form-grid">
-      <div class="file-upload">
-        <label for="fileInput">เลือกไฟล์</label>
-        <input type="file" id="fileInput" name="attachments" multiple (change)="onFileSelected($event)" />
+        <!-- 🔶 เวลาสิ้นสุด -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>เวลาสิ้นสุด</mat-label>
+          <mat-select [(ngModel)]="endTime" name="endTime" required #endTimeCtrl="ngModel"
+            (selectionChange)="validateEndTime()">
+            <mat-option *ngFor="let time of filteredEndTimes" [value]="time">{{ time }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.submitted && endTimeCtrl.invalid">กรุณาเลือกเวลาสิ้นสุด</mat-error>
+        </mat-form-field>
       </div>
 
-      <div *ngIf="selectedFiles.length > 0" class="file-list">
-        <p>ไฟล์ที่เลือก:</p>
-        <ul>
-          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
-        </ul>
-      </div>
-    </div>
-  </fieldset>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>รายละเอียด</mat-label>
+        <textarea matInput rows="4" name="details" [(ngModel)]="details"></textarea>
+      </mat-form-field>
 
-  <div class="form-actions">
-    <button mat-raised-button color="primary" type="submit">
-      <mat-icon>save</mat-icon> บันทึก
-    </button>
-  </div>
-</form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>หมายเหตุ</mat-label>
+        <textarea matInput rows="2" name="note" [(ngModel)]="note"></textarea>
+      </mat-form-field>
+    </fieldset>
+
+    <!-- 🔶 แนบไฟล์ -->
+    <fieldset>
+      <legend>📎 แนบไฟล์</legend>
+      <div class="form-grid">
+        <div class="file-upload">
+          <label for="fileInput">เลือกไฟล์</label>
+          <input type="file" id="fileInput" name="attachments" multiple (change)="onFileSelected($event)" />
+        </div>
+
+        <div *ngIf="selectedFiles.length > 0" class="file-list">
+          <p>ไฟล์ที่เลือก:</p>
+          <ul>
+            <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+          </ul>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">
+        <mat-icon>save</mat-icon> บันทึก
+      </button>
+    </div>
+  </form>
+</div>
