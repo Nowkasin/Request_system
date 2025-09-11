@@ -21,7 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class ProfileComponent implements OnInit {
   username = '';
   fullName = '';
-  department = '';
+  position = '';
   role = '';
   loading = true;
   errorMessage = '';
@@ -29,12 +29,13 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || '';
-    this.fullName = sessionStorage.getItem('fullName') || '';
-    this.department = sessionStorage.getItem('department') || '';
-    this.role = sessionStorage.getItem('role') || '';
+    const sessionData = sessionStorage.getItem('userSession');
 
-    if (this.username) {
+    if (sessionData) {
+      const user = JSON.parse(sessionData);
+      this.username = user.username;
+      this.role = user.role;
+
       this.fetchUserInfo(this.username);
     } else {
       this.loading = false;
@@ -42,19 +43,40 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  fetchUserInfo(username: string): void {
-    const infoUrl = `/api_phonebook/phonebook/employee_info/${username}`;
-    this.http.get<{ firstName: string; lastName: string; department: string }>(infoUrl).subscribe({
-      next: (data) => {
-        this.fullName = `${data.firstName} ${data.lastName}`;
-        this.department = data.department;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('❌ ไม่สามารถโหลดข้อมูลผู้ใช้:', err);
-        this.errorMessage = 'เกิดข้อผิดพลาดในการโหลดข้อมูล';
-        this.loading = false;
-      },
-    });
-  }
+fetchUserInfo(username: string): void {
+  const infoUrl = `/api_phonebook/phonebook/employee_info/${username}`;
+  this.http.get<{
+    response: { code: string; error: string; message: string; timestamp: string };
+    result: {
+      employee_no: string; 
+      full_name: string;
+      position: string;
+    };
+  }>(infoUrl).subscribe({
+    next: (data) => {
+      const result = data.result;
+      const response = data.response;
+      this.fullName = result.full_name;
+      this.position = result.position;
+      this.username = result.employee_no; // ✅ ใช้ employee_no เป็นรหัสพนักงาน
+
+      const updatedSession = {
+        username: this.username,
+        fullName: this.fullName,
+        position: this.position,
+        role: this.role,
+      };
+      sessionStorage.setItem('userSession', JSON.stringify(updatedSession));
+
+      console.log(response);
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('❌ ไม่สามารถโหลดข้อมูลผู้ใช้:', err);
+      this.errorMessage = 'เกิดข้อผิดพลาดในการโหลดข้อมูล';
+      this.loading = false;
+    },
+  });
+}
+
 }

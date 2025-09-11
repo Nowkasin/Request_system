@@ -1,14 +1,17 @@
 {
-  "/ldap": {
-    "target": "http://172.19.107.54:8080",
+  "/api": {
+    "target": "http://localhost:3000",
     "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
+    "changeOrigin": true
+  },
+  "/ldap": {
+    "target": "http://localhost:3000",
+    "secure": false,
+    "changeOrigin": true
   },
   "/api_phonebook": {
-    "target": "http://172.19.107.54:8080",
+    "target": "http://localhost:3000",
     "secure": false,
-    "changeOrigin": true,
-    "logLevel": "debug"
+    "changeOrigin": true
   }
 }
